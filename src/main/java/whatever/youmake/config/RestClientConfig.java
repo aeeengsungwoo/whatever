@@ -16,18 +16,4 @@ public class RestClientConfig {
     }
 
 
-    @Bean
-    public CustomHttpInterface customHttpInterface() {
-        RestClient client = RestClient.builder()
-                .baseUrl(BASE_URL)
-                .build();
-
-        // RestClient를 어댑터로 변환
-        RestClientAdapter adapter = RestClientAdapter.create(client);
-
-        // HttpServiceProxyFactory를 사용하여 클라이언트 생성
-        return HttpServiceProxyFactory.builderFor(adapter)
-                .build()
-                .createClient(CustomHttpInterface.class);
-    }
 }
